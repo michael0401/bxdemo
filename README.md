@@ -1,6 +1,6 @@
 #BoxspringJS Demo
 
-A web application developed to show the power of [BoxspringJS](https://github.com/rranauro/boxspringjs).
+[BXDemo](http://bxdemo.cloudant.com/bxdemo/_design/bxdemo/index.html) is a web application developed to show the power of [BoxspringJS](https://github.com/rranauro/boxspringjs).
 
 ##Dependencies
 
