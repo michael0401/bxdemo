@@ -1,16 +1,18 @@
 (function(global){
-	
-	var PageOne = Backbone.View.extend({      //select sites window view
+	/*
+	start page
+	*/
+	var PageOne = Backbone.View.extend({  
 	
 		el: '#page1',
 		model: global.mainmodel,	
 		events: {
-		    "click .start-button":"start"
+		    "click .start-button":"start"  //start button
 		},		
 		initialize: function(){
 		
 		},
-		start:function(){
+		start:function(){			//go to page2
 			global.mainmodel.set('mainWindow','page2');
 		}
 
@@ -19,6 +21,7 @@
 	global.PageOne = PageOne;
 
 }(BX));
+
 
 
 

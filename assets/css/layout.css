@@ -24,14 +24,14 @@ body {
   font-size: 21px;
   padding: 14px 24px;
 }
-#page3 ul{
+#page2 ul{
   list-style: none;
 }
 
-#page3 li{
+#page2 li{
   display: inline;
 }
-#page3 .col-button{
+#page2 .col-button{
 	padding: 5px 5px;
 	margin:5px 5px;
 	height:45px;
@@ -39,16 +39,26 @@ body {
 	-moz-border-radius: 1em 4em 1em 4em;
 	border-radius: 1em 4em 1em 4em;
 }
-#page3 .selected{
+#page2 .selected{
 	border: #00ffff;
 	border-style: solid;
 	border-width: 2px;
 }
-#page3 .ui-state-highlight { 
+#page2 .ui-state-highlight { 
 	height: 45px; 
 	width:95px;
 }
-#page4 .btn{
+#page3 .text-box{
+	margin-bottom:40px;
+}
+#page3 .alert{
+	font-size:15px;
+}
+#page4 .previous-button{
+	font-size:21px;
+	padding: 5px 25px;
+}
+#page4 .next-button{
 	font-size:21px;
 	padding: 5px 25px;
 }

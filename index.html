@@ -16,15 +16,6 @@
 
     <!-- Custom styles for this template -->
     <link href="./assets/css/layout.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
@@ -34,9 +25,9 @@
 	      		<h3 class="text-muted">BoxspringJS Demo</h3>
 	        	<ul class="nav nav-justified">
 	          	  	<li class="active"><a href="#">Home</a></li>
-	          	  	<li><a href="#">Downloads</a></li>
+	          	  	<li><a href="./bxdemo.zip">Download</a></li>
+	          	  	<li><a href="http://boxspringjs.com/">BoxspringJS</a></li>
 	          	  	<li><a href="#">About</a></li>
-	          	  	<li><a href="#">Contact</a></li>
 	       	 	</ul>
 	      	</div>               
 	    </div> 
@@ -47,12 +38,6 @@
 		        <p><a class="btn btn-lg btn-success start-button" href="#" role="button">Get started</a></p>
 			</div>
 			<div class="jumbotron" id="page2" style="display:none">
-		        <h1>Pick a data set</h1>
-		        <p class="lead">You can either upload your own data or use the default data.</p>
-		        <p><a class="btn btn-lg btn-success default-button" href="#" role="button">Default data</a>
-				<a class="btn btn-lg btn-success upload-button" href="#" role="button">Upload your own data</a></p>
-			</div>
-			<div class="jumbotron" id="page3" style="display:none">
 		        <h1>Pick columns</h1>
 		        <p class="lead">You can pick or unpick the columns and arrange them in order by dragging. You can also double click picked columns for sorting.</p>
 				<p> Picked: 
@@ -72,7 +57,33 @@
 						<li><a class="btn btn-lg btn-warning col-button" href="#" role="button">url</a></li>
 				  	</ul>
 				</p>
-		        <p><a class="btn btn-lg btn-success build-button" href="#" role="button">Build the table</a>
+		        <p><a class="btn btn-lg btn-success next-button" href="#" role="button">Next</a>
+				</p>
+			</div>
+			<div class="jumbotron" id="page3" style="display:none">
+		        <h1>Set page size and cache size</h1>
+		        <p class="lead">Page size is the number of rows per page. Cache size is the number of pages stored in cache.</p>		 
+				<div class="row">
+					<div class="col-lg-3 col-lg-offset-4 input-group input-group-lg text-box">
+	  				  	<span class="input-group-addon">Page Size </span>
+	  					<input type="text" class="form-control page-size-text" placeholder="1-100">
+					</div>
+					<div class="col-lg-4 alert alert-warning page-alert" style="display:none">
+					  <strong>Error!</strong> Page size should be 1 - 100.
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-lg-offset-4 input-group input-group-lg text-box">
+						<span class="input-group-addon">Cache Size</span>
+						<input type="text" class="form-control cache-size-text" placeholder="1-100">
+					</div>
+					<div class="col-lg-4 alert alert-warning cache-alert" style="display:none">
+					  <strong>Error!</strong> Cache size should be 1 - 100.
+					</div>
+				</div>		
+				<p>
+					<a class="btn btn-lg btn-success back-button" href="#" role="button">Back</a>
+					<a class="btn btn-lg btn-success next-button" href="#" role="button">Next</a>
 				</p>
 			</div>
 			<div class="jumbotron" id="page4" style="display:none">
@@ -100,6 +111,7 @@
 					</button>
 				</p>	
 				<p>
+					<a class="btn btn-lg btn-success back-button" href="#" role="button">Back</a>
 					<a class="btn btn-lg btn-success startover-button" href="#" role="button">Start over</a>
 				</p> 
 				<div class="modal fade">

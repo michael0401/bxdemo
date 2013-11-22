@@ -1,13 +1,11 @@
 (function(global){
 	
-	var getData = function(){
+	var getData = function(page_size, cache_size){
 		
-		var auth = { name: "michael0401", password: "8660177" }
-		, Maker = Boxspring().set({'db_name': 'bxsample', '_design': 'my-design', '_view': 'my-view', 'auth': auth });
+		var auth = { name: "yourusername", password: "yourpassword" }  //database username and password
+		, Maker = Boxspring().set({'db_name': 'bxdemo', '_design': 'my-design', '_view': 'my-view', 'auth': auth });  //initialize boxspringJS
 	
-		//dbpublic = db.use('https://www.somwhere-out-there.com');
-	
-		var ddoc = function () {
+		var ddoc = function () {		//build document file
 			return ({
 				"updates": {
 					"my-commit": function (doc, req) {
@@ -55,41 +53,38 @@
 			});
 		}
 	
-		var anotherdb = Maker.set('maker', ddoc).use();
-		var design = anotherdb.design('_design/my-design');
+		var anotherdb = Maker.set('maker', ddoc).use();   //initialize database 
+		var design = anotherdb.design('_design/my-design');		//build design file
 		var pages
 		, page
 		, query = anotherdb.Query(anotherdb.view(),
-						{'asynch': true, 'page-size': 10, 'cache-size': 10, 'delay': 1/100 });
-		design.login(function(err, response) {
-			if (err) {
-				console.log(response.body);
-			}
-			design.update(function(err, response) {
-			
-				query.on('result', function(result) {				
-					BX.result = result;
-					var dataArray=[];
-					var data = {};		
-					for(var i=0;i<10;i++){
-						data = {};
-						data.docID = result.body.rows[i].value['_id'];
-						data.dochead = result.body.rows[i].value.content.art.fm.dochead;
-						data.issn =result.body.rows[i].value.content.art.fm.bibl.issn;
-						data.pubdate = result.body.rows[i].value.content.art.fm.bibl.pubdate;
-						data.volume = result.body.rows[i].value.content.art.fm.bibl.volume;
-						data.fpage = result.body.rows[i].value.content.art.fm.bibl.fpage;
-						data.issue = result.body.rows[i].value.content.art.fm.bibl.issue;
-						data.url = result.body.rows[i].value.content.art.fm.bibl.url;
-						data.source = result.body.rows[i].value.content.art.fm.bibl.source;
-						data.content=result.body.rows[i].value.content;
-						dataArray.push(data);
-					}
-					global.mainmodel.set('tableData', dataArray);
-				});
-				query.fetch();
-			});			
-		});
+						{'asynch': true, 'page-size': page_size, 'cache-size': cache_size, 'delay': 1/100 });
+		//use design file to get the data from database
+		design.update(function(err, response) {
+		
+			query.on('result', function(result) {				
+				BX.result = result;
+				var dataArray=[];
+				var data = {};		
+				for(var i=0;i<page_size;i++){
+					data = {};
+					data.docID = result.body.rows[i].value['_id'];
+					data.dochead = result.body.rows[i].value.content.art.fm.dochead;
+					data.issn =result.body.rows[i].value.content.art.fm.bibl.issn;
+					data.pubdate = result.body.rows[i].value.content.art.fm.bibl.pubdate;
+					data.volume = result.body.rows[i].value.content.art.fm.bibl.volume;
+					data.fpage = result.body.rows[i].value.content.art.fm.bibl.fpage;
+					data.issue = result.body.rows[i].value.content.art.fm.bibl.issue;
+					data.url = result.body.rows[i].value.content.art.fm.bibl.url;
+					data.source = result.body.rows[i].value.content.art.fm.bibl.source;
+					data.content=result.body.rows[i].value.content;
+					dataArray.push(data);
+				}
+				global.mainmodel.set('tableData', dataArray);
+			});
+			//fetch will trigger the result event, so will page-next and page-prev
+			query.fetch();
+		});			
 	}
 	global.getData = getData;	
 	

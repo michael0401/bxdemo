@@ -1,40 +1,66 @@
 (function(global){
-	
-	var PageThree = Backbone.View.extend({      //select sites window view
+	/*
+	enter page size and cache size page
+	*/
+	var PageThree = Backbone.View.extend({    
 	
 		el: '#page3',
 		model: global.mainmodel,	
 		events: {
-		    "click .build-button":"buildTable"
+		    "click .next-button":"nextFunction",    //next button
+			"click .back-button":"backFunction",	//back button
+			"blur .page-size-text":"checkPageSize",   //pagesize textbox blur
+			"blur .cache-size-text":"checkCacheSize"  //cachesize textbox blur
 		},		
 		initialize: function(){
-			$("#sortable1, #sortable2").sortable({
-			    connectWith: ".connectedSortable",
-				opacity: 0.7
-			}).disableSelection();
-			$("#sortable1, #sortable2").find('.col-button').dblclick(function(){
-				if($(this).parents("#sortable1").length){
-					if($(this).hasClass('selected')){					
-						$(this).removeClass('selected');
-					}
-					else{
-						$(this).addClass('selected');
-					}	
-				}						
-			});
-			$("#sortable2").on("change", function(event, ui){
-				$("#sortable2").find(".col-button").removeClass('selected');
-			});
+			this.ready_next=false;
+			this.page_size= 0;
+			this.cache_size=0;
 		},
-		buildTable:function(){
-			var cols = [];
-			for(var i=0;i<$("#sortable1").find(".col-button").length;i++){
-				cols.push($("#sortable1").find(".col-button").eq(i).html());
-			}	
-			global.mainmodel.set('columnData', cols);		
-			global.getData();
-			global.mainmodel.set('mainWindow','page4');
+		nextFunction:function(){		//go to page4
+			if(this.ready_next===true&&this.page_size!==0&&this.cache_size!==0) {
+				global.mainmodel.set('pageSize',this.page_size);
+				global.getData(this.page_size, this.cache_size);
+				global.mainmodel.set('mainWindow','page4');
+			}			
 		},
+		backFunction:function(){   //go back to page2
+			global.mainmodel.set('mainWindow','page2');
+		},
+		checkPageSize:function(){		//check page size format
+			if(/^\d+$/.test($(".page-size-text").val())===false){
+				$(".page-alert").show();
+				this.ready_next =false;
+			}
+			else{
+				this.page_size = parseInt($(".page-size-text").val());
+				if(this.page_size<1||this.page_size>100){
+					$(".page-alert").show();
+					this.ready_next =false;
+				}
+				else{
+					$(".page-alert").hide();
+					this.ready_next =true;
+				}			
+			}
+		},
+		checkCacheSize:function(){		//check cache size format
+			if(/^\d+$/.test($(".cache-size-text").val())===false){
+				$(".cache-alert").show();
+				this.ready_next =false;
+			}
+			else{
+				this.cache_size = parseInt($(".cache-size-text").val());
+				if(this.cache_size<1||this.cache_size>100){
+					$(".cache-alert").show();
+					this.ready_next =false;
+				}
+				else{
+					$(".cache-alert").hide();
+					this.ready_next =true;
+				}	
+			}
+		}
 	});
 	
 	global.PageThree = PageThree;
