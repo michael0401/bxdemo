@@ -36,7 +36,8 @@ The whole application consists of 4 pages:
 			'auth': auth 
 		});  
 
-* Upload the bxdemo folder to your couchdb database and open the url in the browser. If it is local, try http://127.0.0.1:5984/yourdatabase/_design/bxdemo/index.html. If it is on cloudant, try http://yourusername.cloudant.com/yourdatabase/_design/bxdemo/index.html.	
+* Upload the bxdemo folder to your couchdb database and run boxspringJS test file to see if boxspringJS can function well. If it is local, try http://127.0.0.1:5984/yourdatabase/_design/bxdemo/assets/modules/boxspring/bxtest/index.html. If it is on cloudant, try http://yourusername.cloudant.com/yourdatabase/_design/bxdemo/assets/modules/boxspring/bxtest/index.html.	
+* Run the application in the browser. If it is local, try http://127.0.0.1:5984/yourdatabase/_design/bxdemo/index.html. If it is on cloudant, try http://yourusername.cloudant.com/yourdatabase/_design/bxdemo/index.html.	
 
 ##Acknowledgements
 
