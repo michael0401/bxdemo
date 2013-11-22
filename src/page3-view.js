@@ -5,38 +5,36 @@
 		el: '#page3',
 		model: global.mainmodel,	
 		events: {
-		    "click .previous-button":"prePage",
-			"click .next-button":"nextPage",
-			"click .startover-button":"startover",
+		    "click .build-button":"buildTable"
 		},		
 		initialize: function(){
-			global.mainmodel.on('change:tableData', function(){
-				var data = global.mainmodel.get('tableData');
-				if(data!==""){
-					var template;
-					for(var i=0;i<10;i++){					
-						template +=  _.template($("#table-row-template").html(), {num: i, col1: data[i].id, col2: data[i].issn, col3: data[i].pubdate});	
-					}				
-					$(".table-data").html(template);	
-					$(".table-row").click(function(){
-						var index = $(this).attr('id').substring(4);
-						$(".modal").find(".row-title").html(data[index].id+" Content");
-						$(".modal").find(".row-content").html(data[index].content);
-						$('.modal').modal('show')
-					});		
-				}			
+			$("#sortable1, #sortable2").sortable({
+			    connectWith: ".connectedSortable",
+				opacity: 0.7
+			}).disableSelection();
+			$("#sortable1, #sortable2").find('.col-button').dblclick(function(){
+				if($(this).parents("#sortable1").length){
+					if($(this).hasClass('selected')){					
+						$(this).removeClass('selected');
+					}
+					else{
+						$(this).addClass('selected');
+					}	
+				}						
+			});
+			$("#sortable2").on("change", function(event, ui){
+				$("#sortable2").find(".col-button").removeClass('selected');
 			});
 		},
-		prePage:function(){
-			global.result.nextPrev('previous');
+		buildTable:function(){
+			var cols = [];
+			for(var i=0;i<$("#sortable1").find(".col-button").length;i++){
+				cols.push($("#sortable1").find(".col-button").eq(i).html());
+			}	
+			global.mainmodel.set('columnData', cols);		
+			global.getData();
+			global.mainmodel.set('mainWindow','page4');
 		},
-		nextPage:function(){
-			global.result.nextPrev('next');
-		},
-		startover:function(){
-			$(".table-data").html("");
-			global.mainmodel.set('mainWindow', 'page1');
-		}
 	});
 	
 	global.PageThree = PageThree;

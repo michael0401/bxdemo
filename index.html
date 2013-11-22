@@ -53,17 +53,43 @@
 				<a class="btn btn-lg btn-success upload-button" href="#" role="button">Upload your own data</a></p>
 			</div>
 			<div class="jumbotron" id="page3" style="display:none">
+		        <h1>Pick columns</h1>
+		        <p class="lead">You can pick or unpick the columns and arrange them in order by dragging. You can also double click picked columns for sorting.</p>
+				<p> Picked: 
+					<ul id="sortable1" class="connectedSortable">
+						<li><a class="btn btn-lg btn-warning col-button" href="#" role="button">docID</a></li>
+					    <li><a class="btn btn-lg btn-warning col-button" href="#" role="button">dochead</a></li>
+					    <li><a class="btn btn-lg btn-warning col-button" href="#" role="button">source</a></li>
+					    <li><a class="btn btn-lg btn-warning col-button" href="#" role="button">issn</a></li>
+				  	</ul>
+				</p>
+				<p> Unpicked:
+					<ul id="sortable2" class="connectedSortable">
+					    <li><a class="btn btn-lg btn-warning col-button" href="#" role="button">pubdate</a></li>
+					    <li><a class="btn btn-lg btn-warning col-button" href="#" role="button">volume</a></li>
+						<li><a class="btn btn-lg btn-warning col-button" href="#" role="button">issue</a></li>
+					    <li><a class="btn btn-lg btn-warning col-button" href="#" role="button">fpage</a></li>
+						<li><a class="btn btn-lg btn-warning col-button" href="#" role="button">url</a></li>
+				  	</ul>
+				</p>
+		        <p><a class="btn btn-lg btn-success build-button" href="#" role="button">Build the table</a>
+				</p>
+			</div>
+			<div class="jumbotron" id="page4" style="display:none">
 		        <h3>Data Table</h3>
 				<table class="table table-hover">
 					<thead>
-						<tr><td>Doc ID</td><td>ISSN</td><td>Publish Date</td></tr>
+						<tr class="table-header"></tr>
 					</thead>
 					<tbody class="table-data">
 						
 					</tbody>
 				</table>
+				<script type="text/template" id="table-header-template">
+					<td><%=header%></td>
+				</script>
 				<script type="text/template" id="table-row-template">
-					<tr id="row-<%=num%>" class="table-row"><td><%=col1%></td><td><%=col2%></td><td><%=col3%></td></tr>
+					<tr id="row-<%=num%>" class="table-row"></tr>
 				</script>
 				<p>
 					<button type="button" class="btn btn-info previous-button btn-sm">
@@ -117,5 +143,6 @@
   <script src="./src/page1-view.js"></script>
   <script src="./src/page2-view.js"></script>
   <script src="./src/page3-view.js"></script>
+  <script src="./src/page4-view.js"></script>
   <script src="./src/start.js"></script>
 </html>

@@ -12,14 +12,11 @@
 		
 		},
 		goDefault:function(){
-			global.getData();
 			global.mainmodel.set('mainWindow','page3');
-			
 		},
 		upload:function(){
 			
 		}
-
 	});
 	
 	global.PageTwo = PageTwo;

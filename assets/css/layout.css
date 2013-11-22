@@ -24,7 +24,31 @@ body {
   font-size: 21px;
   padding: 14px 24px;
 }
-#page3 .btn{
+#page3 ul{
+  list-style: none;
+}
+
+#page3 li{
+  display: inline;
+}
+#page3 .col-button{
+	padding: 5px 5px;
+	margin:5px 5px;
+	height:45px;
+	width:95px;
+	-moz-border-radius: 1em 4em 1em 4em;
+	border-radius: 1em 4em 1em 4em;
+}
+#page3 .selected{
+	border: #00ffff;
+	border-style: solid;
+	border-width: 2px;
+}
+#page3 .ui-state-highlight { 
+	height: 45px; 
+	width:95px;
+}
+#page4 .btn{
 	font-size:21px;
 	padding: 5px 25px;
 }

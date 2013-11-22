@@ -2,7 +2,7 @@
 	
 	var getData = function(){
 		
-		var auth = { name: "michael", password: "abc123" }
+		var auth = { name: "michael0401", password: "8660177" }
 		, Maker = Boxspring().set({'db_name': 'bxsample', '_design': 'my-design', '_view': 'my-view', 'auth': auth });
 	
 		//dbpublic = db.use('https://www.somwhere-out-there.com');
@@ -60,23 +60,27 @@
 		var pages
 		, page
 		, query = anotherdb.Query(anotherdb.view(),
-						{'asynch': true, 'page-size': 10, 'cache-size': 5, 'delay': 1/100 });
+						{'asynch': true, 'page-size': 10, 'cache-size': 10, 'delay': 1/100 });
 		design.login(function(err, response) {
 			if (err) {
 				console.log(response.body);
 			}
 			design.update(function(err, response) {
 			
-				query.on('result', function(result) {	
-					console.log(result);				
+				query.on('result', function(result) {				
 					BX.result = result;
 					var dataArray=[];
 					var data = {};		
 					for(var i=0;i<10;i++){
 						data = {};
-						data.id = result.body.rows[i].value['_id'];
+						data.docID = result.body.rows[i].value['_id'];
+						data.dochead = result.body.rows[i].value.content.art.fm.dochead;
 						data.issn =result.body.rows[i].value.content.art.fm.bibl.issn;
 						data.pubdate = result.body.rows[i].value.content.art.fm.bibl.pubdate;
+						data.volume = result.body.rows[i].value.content.art.fm.bibl.volume;
+						data.fpage = result.body.rows[i].value.content.art.fm.bibl.fpage;
+						data.issue = result.body.rows[i].value.content.art.fm.bibl.issue;
+						data.url = result.body.rows[i].value.content.art.fm.bibl.url;
 						data.source = result.body.rows[i].value.content.art.fm.bibl.source;
 						data.content=result.body.rows[i].value.content;
 						dataArray.push(data);
